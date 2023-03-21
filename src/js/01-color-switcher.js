@@ -10,10 +10,12 @@ const body = document.querySelector('body');
 
 btnStart.addEventListener('click', onChangeColor);
 btnStop.addEventListener('click', onStopedColor);
+btnStop.disabled = true;
 
 function onChangeColor() {
   if (!intervalId) {
     btnStart.disabled = true;
+    btnStop.disabled = false;
 
     intervalId = setInterval(() => {
       let color = getRandomHexColor();
@@ -25,4 +27,5 @@ function onChangeColor() {
 function onStopedColor() {
   intervalId = clearInterval(intervalId);
   btnStart.disabled = false;
+  btnStop.disabled = true;
 }

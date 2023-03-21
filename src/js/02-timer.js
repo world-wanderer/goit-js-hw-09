@@ -10,8 +10,10 @@ const options = {
   onClose(selectedDates) {
     const selectedDate = selectedDates[0];
     const now = new Date();
+
     if (selectedDate < now) {
       Notiflix.Notify.failure(`Please choose a date in the future`);
+      btnStart.disabled = true;
     } else {
       const btnStart = document.querySelector('button[data-start]');
       btnStart.disabled = false;
@@ -29,6 +31,8 @@ const minutesValue = timer.querySelector('span[data-minutes]');
 const secondsValue = timer.querySelector('span[data-seconds]');
 
 let intervalId = null;
+btnStart.disabled = true;
+
 btnStart.addEventListener('click', () => {
   const now = new Date();
   const selectedDate = picker.selectedDates[0];
@@ -37,6 +41,7 @@ btnStart.addEventListener('click', () => {
     return;
   }
   intervalId = setInterval(updateTimer, 1000);
+  btnStart.disabled = true;
 });
 
 function updateTimer() {
